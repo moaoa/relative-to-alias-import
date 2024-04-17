@@ -10,17 +10,15 @@ Managing a large codebase with deeply nested directories can be a hassle, as it 
 
 You can use this tool as a one-time command without installing it globally. Simply run:
 
-npx relative-to-alias-import
-
-Copy
+`npx relative-to-alias-import`
 
 If you'd like to install it globally, you can do so using npm or yarn:
 
-npm install -g relative-to-alias-import
+`npm install -g relative-to-alias-import`
 
 or
 
-yarn global add relative-to-alias-import
+`yarn global add relative-to-alias-import`
 
 ## Usage
 
