@@ -22,7 +22,7 @@ You can use this tool as a one-time command without installing it globally. Simp
 
 `npx relative-to-alias-import vue ts js`
 
-the above command will work on vue, ts and js files
+the above command will work on vue, ts and js files you can specify what type of files you want
 
 This will scan your codebase, identify all relative imports, and convert them to use the `@` alias. The `@` symbol will point to the project's source directory, making your imports more concise and easier to maintain.
 
