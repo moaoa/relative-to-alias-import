@@ -1,10 +1,13 @@
 {
   "name": "relative-to-alias-import",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A script that automatically converts relative imports to use the @ alias, which represents the project's source directory.",
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "relative-to-alias-import": "./bin/cli.js"
   },
   "repository": {
     "type": "git",
@@ -12,12 +15,12 @@
   },
   "keywords": [
     "import",
-    "alias",
     "relative",
+    "alias",
     "convert",
     "automatic"
   ],
-  "author": "moaad",
+  "author": "moaad_ben_taher",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/moaoa/relative-to-alias-import/issues"
