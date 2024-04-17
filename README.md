@@ -18,13 +18,9 @@ If you'd like to install it globally, you can do so using npm or yarn:
 
 npm install -g relative-to-alias-import
 
-Copy
-
 or
 
 yarn global add relative-to-alias-import
-
-Copy
 
 ## Usage
 
@@ -32,22 +28,17 @@ To use the tool, simply run the following command in your project's root directo
 
 relative-to-alias-import
 
-vhdl
-Copy
-
 This will scan your codebase, identify all relative imports, and convert them to use the `@` alias. The `@` symbol will point to the project's source directory, making your imports more concise and easier to maintain.
 
 ## Features
 
 - Automatically converts relative imports to use the `@` alias
-- Supports JavaScript, TypeScript, and React files
+- Supports TypeScript, and Vue files
 - Preserves existing imports that already use the `@` alias
-- Dry run mode to preview changes without modifying files
-- Customizable source directory name (default is `src`)
 
 ## Contributing
 
-If you encounter any issues or have suggestions for new features, please feel free to open an issue on the [GitHub repository](https://github.com/your-username/relative-to-alias-import/issues).
+If you encounter any issues or have suggestions for new features, please feel free to open an issue.
 
 ## License
 
