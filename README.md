@@ -10,12 +10,6 @@ This makes your imports more concise and easier to manage, as you no longer have
 
 ## Installation
 
-You can use this tool as a one-time command without installing it globally. Simply run:
-
-`npx relative-to-alias-import`
-
-If you'd like to install it globally, you can do so using npm or yarn:
-
 `npm install -g relative-to-alias-import`
 
 or
@@ -24,16 +18,18 @@ or
 
 ## Usage
 
-To use the tool, simply run the following command in your project's root directory:
+You can use this tool as a one-time command without installing it globally. Simply run:
 
-relative-to-alias-import
+`npx relative-to-alias-import vue ts js`
+
+the above command will work on vue, ts and js files
 
 This will scan your codebase, identify all relative imports, and convert them to use the `@` alias. The `@` symbol will point to the project's source directory, making your imports more concise and easier to maintain.
 
 ## Features
 
 - Automatically converts relative imports to use the `@` alias
-- Supports TypeScript, and Vue files
+- Adding your allowed extensions (.vue, .ts, .js...)
 - Preserves existing imports that already use the `@` alias
 
 ## Contributing
