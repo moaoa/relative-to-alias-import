@@ -4,7 +4,9 @@ A script that automatically converts relative imports to use the `@` alias, whic
 
 ## Motivation
 
-Managing a large codebase with deeply nested directories can be a hassle, as it often leads to a proliferation of relative imports (e.g., `../../../utils/someFile.js`). This can make the code harder to read, maintain, and refactor. The `relative-to-alias-import` tool aims to simplify this problem by allowing you to convert all of these relative imports to use a convenient `@` alias, which represents the project's source directory.
+Dealing with deeply nested directories and relative imports (e.g., ../../../utils/someFile.js) can make code harder to read, maintain, and refactor. The relative-to-alias-import tool solves this problem by allowing you to convert all of these relative imports to use a convenient @ alias, which represents the project's source directory.
+
+This makes your imports more concise and easier to manage, as you no longer have to worry about the exact location of files within your project's directory structure.
 
 ## Installation
 
