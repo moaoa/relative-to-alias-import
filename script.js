@@ -1,6 +1,10 @@
 import { readdirSync, statSync, readFile, writeFile } from "fs";
 import { join, extname } from "path";
 
+const args = process.argv.slice(2);
+
+const allowedExtensions = args ?? [".ts", ".js"];
+
 function traverseDirectory(directory) {
   const files = readdirSync(directory);
 
@@ -15,7 +19,7 @@ function traverseDirectory(directory) {
 
     const fileExtension = extname(file);
 
-    if (fileExtension !== ".vue" && fileExtension !== ".ts") {
+    if (!allowedExtensions.includes(fileExtension.slice(1))) {
       // console.log(`Ignoring file: ${filePath}`);
       return;
     }
