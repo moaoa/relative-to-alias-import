@@ -1,6 +1,6 @@
 #! /usr/bin/env node
-import { readdirSync, statSync, readFile, writeFile } from "fs";
-import { join, extname } from "path";
+const { readdirSync, statSync, readFile, writeFile } = require("fs");
+const { join, extname } = require("path");
 
 const args = process.argv.slice(2);
 
