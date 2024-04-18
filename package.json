@@ -1,6 +1,6 @@
 {
   "name": "relative-to-alias-import",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "A script that automatically converts relative imports to use the @ alias, which represents the project's source directory.",
   "main": "script.js",
   "type": "module",
