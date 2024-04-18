@@ -56,13 +56,13 @@ function traverseDirectory(directory) {
         }
 
         const numberOfBackJumps = Array.from(match.matchAll(/\.\.\//g)).length;
-        const pathAfterSrcDirectory = filePath
+        const currentFilePathAfterSrcDirectory = filePath
           .substring(filePath.indexOf("\\src") + "\\src".length)
           .replaceAll("\\", "/")
           .replace("/", "");
 
         // from the path components/general/input.vue => ['components', 'general', 'input.vue']
-        const sections = pathAfterSrcDirectory.split("/");
+        const sections = currentFilePathAfterSrcDirectory.split("/");
 
         sections.pop(); // remove the file from the path
 
