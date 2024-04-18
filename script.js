@@ -51,9 +51,10 @@ function traverseDirectory(directory) {
       }
 
       matches.forEach((match) => {
-        if (!match.includes("../")) {
+        if (!match.includes("../") && !match.includes("./")) {
           return;
         }
+
         const numberOfBackJumps = Array.from(match.matchAll(/\.\.\//g)).length;
         const pathAfterSrcDirectory = filePath
           .substring(filePath.indexOf("\\src") + "\\src".length)
@@ -75,7 +76,7 @@ function traverseDirectory(directory) {
           newPath += "/";
         }
 
-        const newImportStatement = match.replace(/[\.\.\/]+/, newPath);
+        const newImportStatement = match.replace(/([\.\/][\.\.\/])+/, newPath);
 
         // replace the old path with new one
         fileContent = fileContent.replace(match, newImportStatement);
