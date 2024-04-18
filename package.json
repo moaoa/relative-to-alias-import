@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "relative-to-alias-import": "./bin/cli.js"
+    "relative-to-alias-import": "./script.js"
   },
   "repository": {
     "type": "git",
