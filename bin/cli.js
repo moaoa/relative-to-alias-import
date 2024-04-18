@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#! /usr/bin/env node
 import { readdirSync, statSync, readFile, writeFile } from "fs";
 import { join, extname } from "path";
 
@@ -95,3 +95,4 @@ function traverseDirectory(directory) {
 
 const rootDirectory = process.cwd() + "\\src";
 traverseDirectory(rootDirectory);
+process.exit(0);
