@@ -115,11 +115,5 @@ if (exists) {
  * @returns {string[]}
  */
 function getDirectoriesOfPath(path) {
-  const pathEndsWithFile = /\.[.]+$/.test(path);
-
-  if (pathEndsWithFile) {
-    return path.split("/").pop();
-  }
-
-  return path.split("/");
+  return path.split("/").pop();
 }
