@@ -26,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/moaoa/relative-to-alias-import/issues"
   },
-  "homepage": "https://github.com/moaoa/relative-to-alias-import#readme"
+  "homepage": "https://github.com/moaoa/relative-to-alias-import#readme",
+  "dependencies": {
+    "colors": "^1.4.0"
+  }
 }

@@ -1,9 +1,13 @@
-import { readdirSync, statSync, readFile, writeFile } from "fs";
+#!/usr/bin/env node
+
+import { readdirSync, statSync, readFile, writeFile, existsSync } from "fs";
 import { join, extname } from "path";
+import { parseFlags, parseExtensions } from "./utils.js";
 
 const args = process.argv.slice(2);
+const flags = parseFlags(args);
 
-const allowedExtensions = args ?? [".ts", ".js"];
+const allowedExtensions = parseExtensions(args) ?? [".ts", ".js"];
 
 function traverseDirectory(directory) {
   const files = readdirSync(directory);
@@ -30,7 +34,7 @@ function traverseDirectory(directory) {
       fileContent = data;
 
       if (err) {
-        console.error(`Error reading file: ${filePath}`);
+        console.error(`Error reading file: ${filePath}`.red);
         return;
       }
 
@@ -43,43 +47,47 @@ function traverseDirectory(directory) {
       // import 'some-file';
       const allFileImports = data.match(/import\s* ['"].*['"]/g) ?? [];
 
-      const matches = [...oneLineImports, ...allFileImports];
+      const importMatches = [...oneLineImports, ...allFileImports];
 
-      if (matches.length === 0) {
-        // console.log('no matches for file ', filePath);
+      if (importMatches.length === 0) {
         return;
       }
 
-      matches.forEach((match) => {
-        if (!match.includes("../") && !match.includes("./")) {
+      importMatches.forEach((importMatch) => {
+        if (!importMatch.includes("../") && !importMatch.includes("./")) {
           return;
         }
 
-        const numberOfBackJumps = Array.from(match.matchAll(/\.\.\//g)).length;
+        const numberOfBackJumps = Array.from(
+          importMatch.matchAll(/\.\.\//g)
+        ).length;
         const currentFilePathAfterSrcDirectory = filePath
           .substring(filePath.indexOf("\\src") + "\\src".length)
           .replaceAll("\\", "/")
           .replace("/", "");
 
-        // from the path components/general/input.vue => ['components', 'general', 'input.vue']
-        const sections = currentFilePathAfterSrcDirectory.split("/");
-
-        sections.pop(); // remove the file from the path
+        // from the path components/general/input.vue => ['components', 'general']
+        const directoriesOfPath = getDirectoriesOfPath(
+          currentFilePathAfterSrcDirectory
+        );
 
         for (let i = 0; i < numberOfBackJumps; i++) {
-          sections.pop();
+          directoriesOfPath.pop();
         }
 
-        let newPath = "/@/" + sections.join("/");
+        let newPath = `${flags.alias ?? "@"}/${directoriesOfPath.join("/")}`;
 
-        if (sections.length > 0) {
+        if (directoriesOfPath.length > 0) {
           newPath += "/";
         }
 
-        const newImportStatement = match.replace(/([\.\/][\.\.\/])+/, newPath);
+        const newImportStatement = importMatch.replace(
+          /([\.\/][\.\.\/])+/,
+          newPath
+        );
 
         // replace the old path with new one
-        fileContent = fileContent.replace(match, newImportStatement);
+        fileContent = fileContent.replace(importMatch, newImportStatement);
       });
 
       writeFile(filePath, fileContent, (err) => {
@@ -93,4 +101,25 @@ function traverseDirectory(directory) {
 }
 
 const rootDirectory = process.cwd() + "\\src";
-traverseDirectory(rootDirectory);
+
+const exists = existsSync(rootDirectory);
+
+if (exists) {
+  traverseDirectory(rootDirectory);
+} else {
+  console.log("root dir is not correct");
+}
+
+/**
+ * @param  {stirng} path
+ * @returns {string[]}
+ */
+function getDirectoriesOfPath(path) {
+  const pathEndsWithFile = /\.[.]+$/.test(path);
+
+  if (pathEndsWithFile) {
+    return path.split("/").pop();
+  }
+
+  return path.split("/");
+}
