@@ -82,7 +82,7 @@ function traverseDirectory(directory) {
         }
 
         const newImportStatement = importMatch.replace(
-          /([\.\/][\.\.\/])+/,
+          /([\.\/]*[\.\.\/])+/,
           newPath
         );
 
@@ -115,5 +115,7 @@ if (exists) {
  * @returns {string[]}
  */
 function getDirectoriesOfPath(path) {
-  return path.split("/").pop();
+  const directories = path.split("/");
+  directories.pop();
+  return directories;
 }
